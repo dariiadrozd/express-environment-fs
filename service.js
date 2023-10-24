@@ -9,7 +9,8 @@ function getAllEnvironment() {
 
 function getEnvironmentById(id) {
     const array = JSON.parse(fs.readFileSync(path))
-    const filtered = array.filter((el) => el.id == id)
+    const filtered = array.filter((el) => el.id == id);
+    if(filtered.length == 0) throw new Error('error')
     return filtered;
 };
 
@@ -23,6 +24,7 @@ function createEnvironment(label, category, priority) {
     const array = JSON.parse(fs.readFileSync(path))
     array.push(item);
     fs.writeFileSync(path, JSON.stringify(array))
+    if(array.length == 0) throw new Error('error id')
     return array;
 }
 
